@@ -1,4 +1,4 @@
-name: First Workflow
+name: Deployment Exercise 1
 on: push
 jobs:
   lint:
@@ -13,33 +13,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Run tests
-        run: npm lint
-  test:
-    needs: lint
-    runs-on: ubuntu-latest
-    steps:
-      - name: Get Code
-        uses: actions/checkout@v4
-      - name: Install NodeJS
-        uses: actions/setup-node@v4
-        with:
-          node-version: 21
-      - name: Install dependencies
-        run: npm ci
+        run: npm runt lint
       - name: Run tests
         run: npm test
-  deploy:
-    needs: test
-    runs-on: ubuntu-latest
-    steps:
-      - name: Get Code
-        uses: actions/checkout@v4
-      - name: Install NodeJS
-        uses: actions/setup-node@v4
-        with:
-          node-version: 21
-      - name: Install dependencies
-        run: npm ci
       - name: Build Project
         run: npm run build
       - name: Deploy
